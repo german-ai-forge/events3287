@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+</head>
+<body>
+    <h2>Edit Event</h2>
+    
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <label for="event_name">Event Name:</label><br>
+        <input type="text" id="event_name" name="event_name" value="{{ event.name }}"><br><br>
+
+        <label for="event_description">Event Description:</label><br>
+        <textarea id="event_description" name="event_description">{{ event.description }}</textarea><br><br>
+
+        <label for="event_date">Event Date (YYYY-MM-DD):</label><br>
+        <input type="text" id="event_date" name="event_date" value="{{ event.date.strftime('%Y-%m-%d') }}"><br><br>
+
+        <label for="event_time">Event Time (HH:MM):</label><br>
+        <input type="text" id="event_time" name="event_time" value="{{ event.date.strftime('%H:%M') }}"><br><br>
+
+        <label for="event_venue">Event Venue:</label><br>
+        <input type="text" id="event_venue" name="event_venue" value="{{ event.venue }}"><br><br>
+
+        <label for="event_image_url">Event Image URL:</label><br>
+        <input type="text" id="event_image_url" name="event_image_url" value="{{ event.image_url }}"><br><br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('event_listing') }}">Back to Event Listing</a>
+</body>
+</html>

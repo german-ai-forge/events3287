@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+</head>
+<body>
+    <h2>Add Event</h2>
+    <form method="POST" action="{{ url_for('add_event') }}">
+        <label for="event_name">Event Name:</label><br>
+        <input type="text" id="event_name" name="event_name" required><br><br>
+
+        <label for="event_description">Event Description:</label><br>
+        <textarea id="event_description" name="event_description"></textarea><br><br>
+
+        <label for="event_date">Event Date (YYYY-MM-DD):</label><br>
+        <input type="date" id="event_date" name="event_date" required><br><br>
+
+        <label for="event_time">Event Time (HH:MM):</label><br>
+        <input type="time" id="event_time" name="event_time" required><br><br>
+
+        <label for="event_venue">Event Venue:</label><br>
+        <input type="text" id="event_venue" name="event_venue" required><br><br>
+
+        <label for="event_image_url">Event Image URL:</label><br>
+        <input type="text" id="event_image_url" name="event_image_url"><br><br>
+
+        <button type="submit">Create Event</button>
+    </form>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
