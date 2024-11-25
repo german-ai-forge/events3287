@@ -1,12 +1,12 @@
-from controllers.mainpage_controller import MaingeController
+from controllers.controllerMainpage_ import MaingeController
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask import Flask
 from flask_pymongo import PyMongo
+from route.shoopingcart_routes import shoopingcart_route
 
-# O bien
 from controllers import CustomerController, CartController
 
-
+from views import main_bp  
 from flask import Flask, render_template, redirect, url_for
 from flask_dance.contrib.google import make_google_blueprint, google
 from flask_mongoengine import MongoEngine
@@ -54,10 +54,12 @@ app.register_blueprint(google_bp, url_prefix="/login")
 app.register_blueprint(home_bp)
 app.register_blueprint(about_bp)
 app.register_blueprint(user_bp)
+app.register_blueprint(main_bp)
+app.register_blueprint(shoppingcart_routes)
 
 # Index route
 # Define routes
-#app.add_url_rule("/login", view_func=show_login_page)
+app.add_url_rule("/login", view_func=show_login_page)
 #app.add_url_rule("/google_login", view_func=login)
 #app.add_url_rule("/logout", view_func=logout)
 
@@ -73,7 +75,7 @@ def index():
 @app.route('/event_listing')
 def event_listing():
     # Fetch events from the database
-    events = db.events.find()  # Replace with your logic if using MongoEngine
+    events = mongo.db.events.find()  # Replace with your logic if using MongoEngine
     return render_template('event_listing.html', events=events)
 # Google login route
 @app.route("/google_login")

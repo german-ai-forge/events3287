@@ -1,22 +1,17 @@
+from flask import Blueprint, render_template
+from controllers.controllerMainpage_ import get_upcoming_events  # Controller function
 
-from flask import Blueprint
+main_bp = Blueprint('main', __name__)
 
+@main_bp.route('/')
+def main_page():
+    """
+    Main page view: Fetches and displays upcoming events.
+    """
+    events = get_upcoming_events()  # Calling the controller function
+    return render_template('main_page.html', events=events)  # Rendering the main_page template
 
-home = Blueprint('home', __name__)
-
-
-@home.route('/')
-
-def index():
-
-    return 'Welcome to the homepage!'
-
-
-about = Blueprint('about', __name__)
-
-
-@about.route('/about')
-
-def about():
-
-    return 'This is the about page.'
+shoppingcart_routes = Blueprint('main', __name__)
+@shoppingcart_routes.route('/shopping_cart')
+def shoopingcart_oage():
+    
